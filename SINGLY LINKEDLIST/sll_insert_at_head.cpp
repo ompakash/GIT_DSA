@@ -2,6 +2,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+//CREATION OF A NODE WITH CONSTRUCTOR
 class Node
 {
 public:
@@ -23,6 +24,7 @@ void insert_at_head(Node *&head, int data)
     temp->next = head;
     head = temp;
 }
+
 
 int main()
 {

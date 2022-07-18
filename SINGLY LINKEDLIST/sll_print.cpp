@@ -1,6 +1,8 @@
 #include <iostream>
 #include <bits/stdc++.h>
 using namespace std;
+
+//CREATION OF A NODE WITH CONSTRUCTOR
 class Node
 {
 public:

@@ -2,7 +2,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-//CREATION OF A NODE WITH CONSTRUCTOR
+// CREATION OF A NODE WITH CONSTRUCTOR
 class Node
 {
 public:
@@ -14,6 +14,19 @@ public:
     {
         this->data = data;
         this->next = NULL;
+    }
+
+    // DESTRUCTOR
+    ~Node()
+    {
+        int value = this->data;
+        //memory free
+        if (this->next != NULL)
+        {
+            delete next;
+            this->next = NULL;
+        }
+        cout << " memory is free for node with data " << value << endl;
     }
 };
 
@@ -45,8 +58,7 @@ void insert_at_last(Node *&tail, int data)
     tail = temp;
 }
 
-
-//INSERT ELEMENT AT A GIVEN POSITION
+// INSERT ELEMENT AT A GIVEN POSITION
 void insert_at_position(Node *&head, Node *&tail, int position, int data)
 {
     // FOR THE FIRST POSITION
@@ -76,6 +88,11 @@ void insert_at_position(Node *&head, Node *&tail, int position, int data)
     element->next = temp->next;
     temp->next = element;
 }
+
+
+
+
+
 
 int main()
 {

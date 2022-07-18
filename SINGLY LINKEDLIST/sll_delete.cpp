@@ -2,7 +2,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-//CREATION OF A NODE WITH CONSTRUCTOR
+// CREATION OF A NODE WITH CONSTRUCTOR
 class Node
 {
 public:
@@ -14,6 +14,19 @@ public:
     {
         this->data = data;
         this->next = NULL;
+    }
+
+    // DESTRUCTOR
+    ~Node()
+    {
+        int value = this->data;
+        // memory free
+        if (this->next != NULL)
+        {
+            delete next;
+            this->next = NULL;
+        }
+        cout << "memory is free for node with data " << value << endl;
     }
 };
 
@@ -45,8 +58,7 @@ void insert_at_last(Node *&tail, int data)
     tail = temp;
 }
 
-
-//INSERT ELEMENT AT A GIVEN POSITION
+// INSERT ELEMENT AT A GIVEN POSITION
 void insert_at_position(Node *&head, Node *&tail, int position, int data)
 {
     // FOR THE FIRST POSITION
@@ -77,6 +89,37 @@ void insert_at_position(Node *&head, Node *&tail, int position, int data)
     temp->next = element;
 }
 
+void deleteNode(Node *&head, int position)
+{
+    // DELETION OF FIRST OR START NODE
+    if (position == 1)
+    {
+        Node *temp = head;
+        head = head->next;
+
+        // DELETE THE FIRST NODE
+        temp->next = NULL;
+        delete temp;
+    }
+    else
+    {
+        // DELETE ELEMENT FROM MIDDLE OR LAST
+        Node *curr = head;
+        Node *prev = NULL;
+        int count = 1;
+
+        while (count <= position)
+        {
+            prev = curr;
+            curr = curr->next;
+            count++;
+        }
+        prev->next = curr->next;
+        curr->next = NULL;
+        delete curr;
+    }
+}
+
 int main()
 {
 
@@ -93,6 +136,15 @@ int main()
     insert_at_position(head, tail, 3, 20);
     // PRINT THE LINKED LIST
     print(head);
+
+    // DELETING THE FIRST NODE
+    deleteNode(head, 1);
+    print(head);
+
+    // DELETION FROM MIDDLE OR LAST
+    deleteNode(head, 2);
+    print(head);
+    cout<<tail->data;
 
     return 0;
 }
