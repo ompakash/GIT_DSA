@@ -17,6 +17,18 @@ public:
         this->next = NULL;
         this->prev = NULL;
     }
+
+    // DESTRUCTOR
+    ~Node()
+    {
+        int val = this->data;
+        if (next != NULL)
+        {
+            delete next;
+            next = NULL;
+        }
+        cout << "memory free for node with data " << val << endl;
+    }
 };
 
 // PRINT ALL ELEMENT OF LINKED LIST
@@ -112,6 +124,36 @@ void insertPosition(Node *&head, Node *&tail, int position, int data)
     element->prev = temp;
 }
 
+void deleteNode(Node *&head, int position)
+{
+    if (position == 1)
+    {
+        Node *temp = head;
+        temp->next->prev = NULL;
+        head = temp->next;
+        temp->next = NULL;
+        delete temp;
+    }
+    else
+    {
+        Node *curr = head;
+        Node *prev = NULL;
+
+        int count = 1;
+        while (count < position)
+        {
+            prev = curr;
+            curr = curr->next;
+            count++;
+        }
+        curr->prev = NULL;
+        prev->next = curr->next;
+        curr->next = NULL;
+
+        delete curr;
+    }
+}
+
 int main()
 {
 
@@ -125,7 +167,8 @@ int main()
 
     insertPosition(head, tail, 2, 100);
     print(head);
-
+    deleteNode(head,3);
+    print(head);
 
     return 0;
 }

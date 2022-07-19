@@ -17,6 +17,19 @@ public:
         this->next = NULL;
         this->prev = NULL;
     }
+
+
+    //DESTRUCTOR 
+    ~Node()
+    {
+        int val = this->data;
+        if (next != NULL)
+        {
+            delete next;
+            next = NULL;
+        }
+        cout << "memory free for node with data " << val << endl;
+    }
 };
 
 // PRINT ALL ELEMENT OF LINKED LIST

@@ -20,7 +20,7 @@ public:
 };
 
 // PRINT ALL ELEMENTS IN LINKEDLIST
-void print(Node *&head)
+void print(Node *head)
 {
     Node *temp = head;
     while (temp)

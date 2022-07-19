@@ -20,7 +20,7 @@ public:
 };
 
 // PRINT ALL ELEMENT OF LINKED LIST
-void print(Node *&head)
+void print(Node *head)
 {
     Node *temp = head;
     while (temp)
@@ -32,7 +32,7 @@ void print(Node *&head)
 }
 
 // LENGTH OF A LINKED LIST
-int getlength(Node *&head)
+int getlength(Node *head)
 {
     Node *temp = head;
     int count = 0;
@@ -45,36 +45,56 @@ int getlength(Node *&head)
 }
 
 // INSERT AT HEAD
-void insertHead(Node *&head, int data)
+void insertHead(Node *&head, Node *&tail, int data)
 {
-    Node *temp = new Node(data);
-    temp->next = head;
-    head->prev = temp;
-    head = temp;
+    // empty list
+    if (head == NULL)
+    {
+        Node *temp = new Node(data);
+        head = temp;
+        tail = temp;
+    }
+    else
+    {
+
+        Node *temp = new Node(data);
+        temp->next = head;
+        head->prev = temp;
+        head = temp;
+    }
 }
 
-void insertTail(Node *&tail, int data)
+//INSERT AT TAIL
+void insertTail(Node *&head, Node *&tail, int data)
 {
-    Node *temp = new Node(data);
-    tail->next = temp;
-    temp->prev = tail;
-    tail = temp;
+    if (tail == NULL)
+    {
+        Node *temp = new Node(data);
+        head = temp;
+        tail = temp;
+    }
+
+    else
+    {
+        Node *temp = new Node(data);
+        tail->next = temp;
+        temp->prev = tail;
+        tail = temp;
+    }
 }
 
 int main()
 {
+    Node *head = NULL;
+    Node *tail = NULL;
 
-    Node *node1 = new Node(10);
-    Node *head = node1;
-    Node *tail = node1;
-
-    // cout << "Element before node2 is " << node2->prev->data << endl;
+    insertHead(head, tail, 5);
 
     print(head);
 
-    insertHead(head, 2);
-    insertTail(tail, 4);
-    insertHead(head, 5);
+    insertHead(head, tail, 2);
+    insertTail(head, tail, 4);
+    insertHead(head, tail, 8);
     print(head);
 
     // cout << getlength(head);
